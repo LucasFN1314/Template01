@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+:root {
+    --primary-color: #92c8fa;
+    --secondary-color: #caa8de;
+    --third-color: #bc8bd9;
+    --tab-normal-size: 100vh;
+}
+
+* {
+    ::-webkit-scrollbar {
+        width: 5px; /* Ancho de la barra de desplazamiento */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--primary-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--secondary-color);
+        border-radius: 20px;
+    }
+
+    overflow-x: hidden;
+    font-family: 'Young Serif', serif;
+}
+
+body {
+    overflow-y: scroll;
+    border-left: 10px solid var(--primary-color);
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: var(--primary-color);
+
+    .header-content {
+        color: white;
+        user-select: none;
+
+        width: 70%;
+        height: 60%;
+        background: var(--secondary-color);
+
+        text-align: center;
+        flex-direction: column;
+
+
+        & > h1 {
+            margin-bottom: .3em;
+        }
+    }
+
+    .header-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 80px;
+        width: 100vw;
+        background: var(--primary-color) url('https://front-end-noobs.com/jecko/img/wave-top.png');
+        background-size: 2000px 100px;
+        animation: header_wave 20s linear infinite;
+    }
+}
+
+footer {
+    width: 100vw;
+    height: fit-content;
+    padding: 1em 0;
+    background: var(--primary-color);
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    .mark-watermark {
+        margin-bottom: 1em;
+    }
+
+    .social-media {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        display: flex;
+
+        .social-icon {
+            display: block;
+            width: 32px;
+            height: 32px;
+
+            border-radius: 100%;
+
+            margin: 0 .3em;
+
+            & > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    & > form {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+
+        & > input {
+            margin-bottom: 1em;
+            border: none;
+            outline: none !important;
+
+            padding: 1em;
+        }
+
+        & > input:focus-visible {
+            border: none;
+            outline: none !important;
+        }
+
+        & > textarea {
+            margin-bottom: 1em;
+            padding: 1em;
+            resize: none;
+            border: none;
+            outline: none !important;
+        }
+
+        & > textarea:focus-visible {
+            outline: none !important;
+            border: none;
+        }
+
+        & > button {
+            color: white;
+            background: var(--secondary-color);
+            border: none;
+            outline: none !important;
+
+            cursor: pointer;
+            padding: 1em 2em;
+            width: fit-content;
+
+            display: block;
+            margin: auto;
+        }
+    }
+}
+
+.tabs-container {
+    width: 100%;
+    margin-top: 1em;
+
+    .tabs {
+        margin-bottom: 1em;
+
+        width: 80%;
+        display: flex;
+        justify-content: center;
+
+        .tab {
+            display: flex;
+
+            & > a {
+                margin: 0 .5em;
+                padding: .5em 1em;
+                text-decoration: none;
+
+                color: white;
+                background: var(--secondary-color);
+            }
+        }
+    }
+}
+
+.tab-viewer {
+    min-height: calc(var(--tab-normal-size) / 2);
+    max-height: var(--tab-normal-size);
+
+    margin-bottom: 1em;
+
+    .tab-content {
+        display: none;
+
+        margin: auto;
+
+        width: 80%;
+        height: var(--tab-normal-size);
+
+        animation: tab-fade;
+        animation-duration: .5s;
+    }
+
+    :target {
+        display: block;
+    }
+}
+
+.nuevos-productos {
+    height: 100%;
+    width: 100%;
+
+    display: block;
+    margin: auto;
+
+    text-align: center;
+
+    color: white;
+    background: var(--secondary-color);
+
+    .section-title {
+        font-size: 1.5em;
+
+        width: fit-content;
+        margin: auto;
+        margin-bottom: 1em;
+
+        padding: .5em 1em;
+        background: var(--primary-color);
+    }
+
+    .product-grid {
+        width: 100%;
+        height: 80%;
+
+        padding: 1em 6em;
+
+        margin: auto;
+        overflow-y: scroll;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 250px;
+        gap: 10px;
+
+        &::-webkit-scrollbar-track {
+            background: var(--secondary-color) !important;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color) !important;
+            border-radius: 20px;
+        }
+
+        .product {
+            background: white;
+            width: 100%;
+            height: 250px;
+
+            margin-bottom: 1em;
+            overflow: hidden;
+
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 var(--third-color);
+
+            position: relative;
+
+            transition: .2s linear;
+
+            .overlay {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                visibility: hidden;
+
+                & > a {
+                    color: var(--third-color);
+                    z-index: 2;
+                    text-decoration: none;
+                    line-height: 20px;
+                    transition: .1s linear;
+
+                    overflow: hidden;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .product-details {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+
+                padding: 0 4px;
+
+                transition: .2s linear;
+
+                word-break: break-word;
+                background: var(--primary-color);
+
+                .product-name, .product-price {
+                    & > b {
+                        font-size: .7em;
+                    }
+                }
+
+            }
+
+            & > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+                transition: .2s linear;
+            }
+
+            &:hover {
+                .overlay {
+                    visibility: visible;
+                }
+
+                .product-details {
+                    transform: translateY(100%);
+                }
+
+                & > img {
+                    filter: blur(10px);
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-radius {
+    border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+.custom-border {
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+@keyframes tab-fade {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        height: var(--tab-normal-size);
+        opacity: 100%;
+    }
+}
+
+@keyframes header_wave {
+    0% {
+        background-position-x: 2000px;
+    }
+    100% {
+        background-position-x: 0px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        .header-content {
+            width: 90%;
+            padding: .6em;
+        }
+    }
+
+    .tabs-container {
+        .tabs {
+            align-items: center;
+            flex-direction: column;
+
+            .tab {
+                margin-bottom: .5em;
+            }
+        }
+    }
+
+    .nuevos-productos {
+        .product-grid {
+            grid-auto-rows: 300px;
+            padding: 2em;
+
+            .product {
+                height: 300px;
+            }
+        }
+    }
+}
